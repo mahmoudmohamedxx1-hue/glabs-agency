@@ -13,11 +13,11 @@ const studioLinks = [
 export function Footer() {
   return (
     <footer className="relative z-10 mt-auto border-t border-zinc-200 bg-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4 md:py-16">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 md:py-16 lg:grid-cols-4">
         <div>
           <a href="#top" aria-label="GLABS home" className="flex items-center">
             <img
-              src="/logo-original.png"
+              src="/logo-nav.png"
               alt="GLABS — AI Agency logo"
               className="h-10 w-auto object-contain"
             />
@@ -82,9 +82,9 @@ export function Footer() {
             <li>
               <a
                 href={`mailto:${EMAIL}`}
-                className="inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-900"
+                className="inline-flex min-w-0 items-center gap-2 break-all text-sm text-zinc-500 transition-colors hover:text-zinc-900"
               >
-                <Mail className="h-4 w-4" aria-hidden="true" />
+                <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
                 {EMAIL}
               </a>
             </li>
@@ -93,10 +93,10 @@ export function Footer() {
                 href={GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-900"
+                className="inline-flex min-w-0 items-center gap-2 text-sm text-zinc-500 transition-colors hover:text-zinc-900"
               >
-                <Github className="h-4 w-4" aria-hidden="true" />
-                GitHub — mahmoudmohamedxx1-hue
+                <Github className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span className="min-w-0 break-all">GitHub — mahmoudmohamedxx1-hue</span>
               </a>
             </li>
             <li>
@@ -114,7 +114,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-zinc-100">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-center text-sm text-zinc-400 md:flex-row">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-center text-sm text-zinc-500 md:flex-row">
           <p>© {new Date().getFullYear()} GLABS — AI Development Studio.</p>
           <p>Designed &amp; built with Next.js, Tailwind CSS and framer-motion.</p>
         </div>

@@ -46,7 +46,7 @@ export function Navbar() {
           aria-label="GLABS — back to top"
         >
           <img
-            src="/logo-original.png"
+            src="/logo-nav.png"
             alt="GLABS — AI Agency logo"
             className="h-10 w-auto object-contain md:h-11"
           />

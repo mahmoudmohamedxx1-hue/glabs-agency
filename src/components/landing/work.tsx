@@ -79,12 +79,12 @@ function LiveCard({
             <h3 className="text-lg font-semibold text-zinc-900">
               {project.title}
             </h3>
-            <p className="mt-0.5 font-mono text-[11px] text-zinc-400">
+            <p className="mt-0.5 font-mono text-[11px] text-zinc-500">
               {project.domain}
             </p>
           </div>
           <ArrowUpRight
-            className="h-5 w-5 shrink-0 text-zinc-400 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-teal-600"
+            className="h-5 w-5 shrink-0 text-zinc-500 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-teal-600"
             aria-hidden="true"
           />
         </div>
@@ -180,7 +180,7 @@ function RepoCard({
       <h3 className="mt-4 text-lg font-semibold text-zinc-900">
         {project.title}
       </h3>
-      <p className="mt-0.5 font-mono text-[11px] text-zinc-400">
+      <p className="mt-0.5 font-mono text-[11px] text-zinc-500">
         {project.repo}
       </p>
       <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-600">
@@ -276,7 +276,7 @@ export function Work() {
           className="mt-20 flex items-center justify-center gap-2"
           aria-hidden="true"
         >
-          <FolderGit2 className="h-3.5 w-3.5 text-zinc-400" />
+          <FolderGit2 className="h-3.5 w-3.5 text-zinc-500" />
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
             Open-source repositories
           </span>
