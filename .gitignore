@@ -61,3 +61,6 @@ server.log
 /.dev-artifacts/
 /agent-ctx/
 /public/cards/
+
+# local tool artifacts
+tool-results/
