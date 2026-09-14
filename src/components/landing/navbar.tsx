@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import {
   AnimatePresence,
   motion,
@@ -11,14 +12,19 @@ import { Github, Menu, X } from "lucide-react";
 
 const GITHUB_URL = "https://github.com/mahmoudmohamedxx1-hue";
 
-const links = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
-];
-
+/* On the home page the nav anchors scroll in-page; on case-study pages
+   they must route home first — so links are prefixed with "/" off-home. */
 export function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const links = [
+    { label: "Work", href: "#work" },
+    { label: "Services", href: "#services" },
+    { label: "Process", href: "#process" },
+    { label: "Contact", href: "#contact" },
+  ].map((l) => ({ ...l, href: isHome ? l.href : `/${l.href}` }));
+
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const { scrollY } = useScroll();
@@ -41,7 +47,7 @@ export function Navbar() {
         className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:h-[72px]"
       >
         <a
-          href="#top"
+          href={isHome ? "#top" : "/"}
           className="flex shrink-0 items-center"
           aria-label="GLABS — back to top"
         >
@@ -113,6 +119,7 @@ export function Navbar() {
                     // menu's exit animation cancels it mid-flight. Scroll
                     // with an explicit instant behavior so it cannot be
                     // interrupted, right as the menu closes.
+                    if (!isHome) return; // off-home: let the anchor navigate
                     const target = document.querySelector(l.href);
                     if (target) {
                       e.preventDefault();

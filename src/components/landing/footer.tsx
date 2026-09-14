@@ -4,10 +4,10 @@ import { liveProjects, EMAIL } from "@/data/projects";
 const GITHUB_URL = "https://github.com/mahmoudmohamedxx1-hue";
 
 const studioLinks = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/#services" },
+  { label: "Process", href: "/#process" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function Footer() {
@@ -15,7 +15,7 @@ export function Footer() {
     <footer className="relative z-10 mt-auto border-t border-zinc-200 bg-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 md:py-16 lg:grid-cols-4">
         <div>
-          <a href="#top" aria-label="GLABS home" className="flex items-center">
+          <a href="/#top" aria-label="GLABS home" className="flex items-center">
             <img
               src="/logo-nav.png"
               alt="GLABS — AI Agency logo"

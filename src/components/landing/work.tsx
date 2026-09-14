@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
+  BookOpen,
   FolderGit2,
   GitBranch,
   GitCommitHorizontal,
@@ -120,17 +121,28 @@ function LiveCard({
               </span>
             ) : null}
           </span>
-          {project.repoUrl ? (
-            <a
-              href={project.repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative z-20 -m-1 flex items-center gap-1 rounded-md px-1 py-1 font-medium text-zinc-500 transition-colors hover:text-zinc-900"
-            >
-              <GitBranch className="h-3.5 w-3.5" aria-hidden="true" />
-              Code
-            </a>
-          ) : null}
+          <span className="relative z-20 flex items-center gap-3 font-medium">
+            {project.caseStudy ? (
+              <a
+                href={`/work/${project.caseStudy}`}
+                className="-m-1 flex items-center gap-1 rounded-md px-1 py-1 text-teal-600 transition-colors hover:text-teal-700 hover:underline"
+              >
+                <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />
+                Case study
+              </a>
+            ) : null}
+            {project.repoUrl ? (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="-m-1 flex items-center gap-1 rounded-md px-1 py-1 text-zinc-500 transition-colors hover:text-zinc-900"
+              >
+                <GitBranch className="h-3.5 w-3.5" aria-hidden="true" />
+                Code
+              </a>
+            ) : null}
+          </span>
         </div>
       </div>
 
@@ -250,8 +262,8 @@ export function Work() {
           </h2>
           <p className="mt-4 text-base leading-relaxed text-zinc-600 md:text-lg">
             Eight products are live on the internet right now — the screenshots
-            are real, and every card opens the running site. The source behind
-            the studio lives on GitHub.
+            are real, every card opens the running site, and each product has a
+            full case study behind it. The source lives on GitHub.
           </p>
         </motion.div>
 

@@ -31,6 +31,7 @@ export type Project = {
   tags: string[];
   image: string;
   status?: "live" | "updating"; // deployment health (default "live")
+  caseStudy?: string; // slug of the full case-study page (/work/[slug])
 };
 
 const GH = "https://github.com/mahmoudmohamedxx1-hue";
@@ -60,6 +61,7 @@ export const liveProjects: Project[] = [
     tags: ["Next.js", "TypeScript", "Prisma", "Recharts"],
     image: "/products/egxdesk.jpg",
     status: "live",
+    caseStudy: "egx-desk",
   },
   {
     title: "NetStream",
@@ -80,6 +82,7 @@ export const liveProjects: Project[] = [
     tags: ["Next.js", "TypeScript", "Prisma", "Tailwind CSS"],
     image: "/products/netstream.jpg",
     status: "live",
+    caseStudy: "netstream",
   },
   {
     title: "Mizan ERPX",
@@ -100,6 +103,7 @@ export const liveProjects: Project[] = [
     tags: ["Next.js", "Electron", "Prisma", "Accounting"],
     image: "/products/mizan-erp.jpg",
     status: "updating",
+    caseStudy: "mizan-erpx",
   },
   {
     title: "The Pharmacy",
@@ -120,6 +124,7 @@ export const liveProjects: Project[] = [
     tags: ["Next.js", "Prisma", "Tailwind CSS", "PWA"],
     image: "/products/the-pharmacy.jpg",
     status: "live",
+    caseStudy: "the-pharmacy",
   },
   {
     title: "Chefaa",
@@ -140,6 +145,7 @@ export const liveProjects: Project[] = [
     tags: ["TypeScript", "Python", "Supabase", "BeautifulSoup"],
     image: "/products/chefaa.jpg",
     status: "live",
+    caseStudy: "chefaa",
   },
   {
     title: "Dope Perfumes",
@@ -158,6 +164,7 @@ export const liveProjects: Project[] = [
     tags: ["E-commerce", "Storefront", "Branding"],
     image: "/products/dope-perfumes.jpg",
     status: "live",
+    caseStudy: "dope-perfumes",
   },
   {
     title: "FreeStream TV",
@@ -178,6 +185,7 @@ export const liveProjects: Project[] = [
     tags: ["Next.js", "TypeScript", "Prisma", "Tailwind CSS"],
     image: "/products/freestream-tv.jpg",
     status: "live",
+    caseStudy: "freestream-tv",
   },
   {
     title: "HIGH-HANDS",
@@ -198,6 +206,7 @@ export const liveProjects: Project[] = [
     tags: ["TypeScript", "Vite", "globe.gl", "deck.gl"],
     image: "/products/high-hands.jpg",
     status: "updating",
+    caseStudy: "high-hands",
   },
 ];
 
@@ -319,7 +328,7 @@ export const EMAIL = "mahmoud.elbaramoni@gmail.com";
  * screenshot, repeated to fill three 7-card rows (21 slots) so the
  * ±1000px parallax glide never exposes empty edges on wide viewports.
  */
-export const heroProducts: {
+export type HeroProduct = {
   title: string;
   link: string;
   thumbnail: string;
@@ -330,8 +339,10 @@ export const heroProducts: {
   stars?: number;
   updatedLabel?: string;
   domain?: string;
-}[] = (() => {
-  const wall = [];
+};
+
+export const heroProducts: HeroProduct[] = (() => {
+  const wall: HeroProduct[] = [];
   for (let i = 0; i < 21; i++) {
     const p = liveProjects[i % liveProjects.length];
     wall.push({
