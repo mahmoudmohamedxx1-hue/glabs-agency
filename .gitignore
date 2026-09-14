@@ -64,3 +64,11 @@ server.log
 
 # local tool artifacts
 tool-results/
+
+# --- repo hygiene: workspace infra, not part of the site ---
+/.zscripts/
+/Caddyfile
+/examples/
+/mini-services/
+/tests/
+/prod.log/
