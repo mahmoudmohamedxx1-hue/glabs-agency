@@ -88,10 +88,46 @@ export const HeroParallax = ({ products }: { products: HeroProduct[] }) => {
         Math.round(window.innerHeight * 1.5)
       )}px`;
     };
+
+    // Deep-link re-anchor: when the URL carries a hash (e.g. /#work from a
+    // case-study page or a shared link), the browser jumps to the target
+    // using the SERVER-RENDERED layout — before this effect resizes the
+    // track from its 190vh placeholder to the measured height. Everything
+    // below the hero then shifts, and the anchor lands ~600px short.
+    // Re-scroll to the intended target once, after measurement settles
+    // (again after fonts, unless the user has scrolled by then).
+    let reanchored = false;
+    let userScrolled = false;
+    const onUserScroll = () => {
+      userScrolled = true;
+    };
+    const reanchor = () => {
+      if (reanchored) return;
+      reanchored = true;
+      const hash = window.location.hash;
+      if (!hash || hash === "#" || hash === "#top") return;
+      const target = document.querySelector(hash);
+      if (target) {
+        target.scrollIntoView({ behavior: "instant" as ScrollBehavior });
+      }
+    };
+
     measure();
+    reanchor();
     window.addEventListener("resize", measure);
-    if (document.fonts?.ready) document.fonts.ready.then(measure).catch(() => {});
-    return () => window.removeEventListener("resize", measure);
+    window.addEventListener("scroll", onUserScroll, { passive: true });
+    if (document.fonts?.ready) {
+      document.fonts.ready
+        .then(() => {
+          measure();
+          if (!userScrolled) reanchor();
+        })
+        .catch(() => {});
+    }
+    return () => {
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("scroll", onUserScroll);
+    };
   }, []);
 
   const { scrollYProgress } = useScroll({

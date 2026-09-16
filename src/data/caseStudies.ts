@@ -237,7 +237,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       "Journal management & accounting ERP — approval workflow, the four financial statements, AR/AP aging, audit log, plus an Electron desktop build with local encrypted storage.",
     image: "/products/mizan-erp.jpg",
-    status: "updating",
+    status: "live",
     live: "https://mizan-erpx.vercel.app",
     domain: "mizan-erpx.vercel.app",
     repoUrl: "https://github.com/mahmoudmohamedxx1-hue/US-Journal-ERP",

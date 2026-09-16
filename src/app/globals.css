@@ -123,8 +123,12 @@
 
 /* Native smooth scrolling for anchor links — the hero uses the original
    21st.dev spring physics, which are tuned for native (instant) scroll
-   input, so no scroll-smoothing library is used. */
+   input, so no scroll-smoothing library is used.
+   position: relative makes <html> a positioned scroll container — required
+   by framer-motion's useScroll({ target }) to measure scroll offsets
+   correctly (it warns in dev when the container is static). */
 html {
+  position: relative;
   scroll-behavior: smooth;
 }
 

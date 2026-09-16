@@ -5,6 +5,7 @@ import {
   getCaseStudy,
   getCaseStudyNeighbors,
 } from "@/data/caseStudies";
+import { liveProjects } from "@/data/projects";
 import { StudyView } from "@/components/case-study/study-view";
 import { Navbar } from "@/components/landing/navbar";
 import { Footer } from "@/components/landing/footer";
@@ -12,6 +13,25 @@ import { ScrollProgress } from "@/components/landing/scroll-progress";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://glabs-agency.vercel.app";
+
+/* schema.org requires ISO 8601 dates — study.year is display text like
+   "2025 – 2026", so resolve the real launch date from the matching
+   project's GitHub createdLabel, falling back to the first 4-digit year. */
+function isoLaunchDate(slug: string, year: string): string | undefined {
+  const project = liveProjects.find((p) => p.caseStudy === slug);
+  if (project?.createdLabel) {
+    const d = new Date(project.createdLabel);
+    if (!Number.isNaN(d.getTime())) {
+      // local date components — toISOString() could shift the day across
+      // timezones for midnight-parsed strings like "Sep 13, 2026"
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${d.getFullYear()}-${m}-${day}`;
+    }
+  }
+  const y = year.match(/\d{4}/)?.[0];
+  return y ? `${y}-01-01` : undefined;
+}
 
 export function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }));
@@ -69,6 +89,7 @@ export default async function CaseStudyPage({
   const neighbors = getCaseStudyNeighbors(slug)!;
 
   /* Structured data — this page as a creative work */
+  const dateCreated = isoLaunchDate(study.slug, study.year);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -77,7 +98,7 @@ export default async function CaseStudyPage({
     description: study.description,
     url: `${SITE_URL}/work/${study.slug}`,
     image: `${SITE_URL}${study.image}`,
-    dateCreated: study.year,
+    ...(dateCreated ? { dateCreated } : {}),
     creator: {
       "@type": "Organization",
       name: "GLABS",

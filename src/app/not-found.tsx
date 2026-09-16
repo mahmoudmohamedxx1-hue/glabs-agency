@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import { heroProducts } from "@/data/projects";
+
+export const metadata: Metadata = {
+  title: "Page not found",
+};
 
 export default function NotFound() {
   const cards = heroProducts.slice(0, 3);

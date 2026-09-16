@@ -558,7 +558,9 @@ export function StudyView({
           <Reveal delay={0.1}>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a
-                href={`mailto:${EMAIL}?subject=Project%20inquiry%20—%20like%20${encodeURIComponent(study.title)}`}
+                href={`mailto:${EMAIL}?subject=${encodeURIComponent(
+                  `Project inquiry — like ${study.title}`
+                )}`}
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-zinc-950 shadow-lg transition-all hover:bg-zinc-200"
               >
                 <Mail className="h-4 w-4" aria-hidden="true" />

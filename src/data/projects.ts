@@ -7,10 +7,10 @@
  * repositories link to their own repo page — never the profile page.
  *
  * Thumbnails are REAL screenshots captured from the running apps
- * (public/products/*.jpg). Two products currently have a web deployment
- * error (their `status` is "updating") — their screenshots come from the
- * apps themselves (Mizan: the repo's dashboard; HIGH-HANDS: the app
- * running locally) and they are flagged in the pending list.
+ * (public/products/*.jpg). One product currently has a web deployment
+ * error (its `status` is "updating") — its screenshot comes from the
+ * app running locally (HIGH-HANDS) and it is flagged in the pending list.
+ * Mizan ERPX's deployment is back online as of Sep 17, 2026.
  */
 
 export type Project = {
@@ -102,7 +102,7 @@ export const liveProjects: Project[] = [
     createdLabel: "Aug 24, 2026",
     tags: ["Next.js", "Electron", "Prisma", "Accounting"],
     image: "/products/mizan-erp.jpg",
-    status: "updating",
+    status: "live",
     caseStudy: "mizan-erpx",
   },
   {
